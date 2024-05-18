@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clue 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        video {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            display: block;
+        }
+        #inputContainer {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: green;
+            border: none;
+            cursor: pointer;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+            padding: 10px;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+            display: none;
+        }
+        #message.error {
+            color: red;
+            background-color: darkred;
+        }
+        .discord-link {
+            color: #f0f0f0; /* Text color same as background color */
+            text-decoration: none;
+            cursor: text; /* Disable pointer cursor */
+            user-select: all; /* Allow text selection */
+            -webkit-user-select: all; /* For Safari */
+            -moz-user-select: all; /* For Firefox */
+            -ms-user-select: all; /* For IE/Edge */
+            display: block;
+            margin: 0 auto; /* Center the text */
+            max-width: 80%; /* Limit width for centering */
+        }
+        .discord-link:hover {
+            color: #f0f0f0; /* Maintain text color on hover */
+        }
+    </style>
+</head>
+<body>
+    <video controls>
+        <source src="clue3.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <p style="display: none;">Discord Server:</p> <!-- Hide "Discord Server:" text -->
+    <span class="discord-link">https://discord.gg/fvMchqun2W</span>
+
+    <div id="inputContainer">
+        <input type="text" id="linkInput" placeholder="Enter the link from the video">
+        <button onclick="checkLink()">Enter</button>
+    </div>
+
+    <div id="message"></div>
+
+    <script>
+        function checkLink() {
+            const correctLink = "https://discord.gg/fvMchqun2W"; // Replace with the actual link from the video
+            const userLink = document.getElementById('linkInput').value;
+            const messageDiv = document.getElementById('message');
+            
+            if (userLink === correctLink) {
+                window.open(correctLink, '_blank');
+            } else {
+                messageDiv.textContent = "Try again";
+                messageDiv.className = "error";
+                messageDiv.style.display = "block";
+                messageDiv.style.opacity = "1";
+
+                setTimeout(() => {
+                    messageDiv.style.opacity = "0";
+                }, 2000);
+
+                setTimeout(() => {
+                    messageDiv.style.display = "none";
+                }, 3000); // Give an extra second for the transition to complete
+            }
+        }
+    </script>
+</body>
+</html>
